@@ -5,7 +5,6 @@ USER root
 ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=Europe/Lisbon
 
-ADD /site_temp/ /var/www/site
 
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone \
     && add-apt-repository ppa:ondrej/php -y && apt-get update && apt-get install -y \
@@ -31,7 +30,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone \
     php-soap \
     && wget https://getcomposer.org/installer -P /tmp/ \
     && cd /tmp && php installer && mv composer.phar /usr/local/bin/composer \
-    && sudo chown -R www-data:www-data /var/www/site \
+    && sudo mkdir -p /var/www/site && sudo chown -R www-data:www-data /var/www/site \
     && sudo usermod -a -G www-data ubuntu
     #&& echo 'export PATH="$HOME/.config/composer/vendor/bin:$PATH"' >> ~/.bashrc \
     #&& source ~/.bashrc
