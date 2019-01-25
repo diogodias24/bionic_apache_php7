@@ -23,6 +23,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone \
     zip \
     unzip \
     php7.2-zip \
+    php7.2-mysql \
     mariadb-client \
     php-zip \
     php-mbstring \

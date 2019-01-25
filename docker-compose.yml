@@ -1,0 +1,14 @@
+version: '3.6'
+
+services:
+  container_test:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    container_name: apache_php72
+    logging:
+      options:
+        max-size: "1m"
+        max-file: "2"
+    restart: on-failure
+    tty: true
