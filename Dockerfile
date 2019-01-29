@@ -32,6 +32,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone \
     && wget https://getcomposer.org/installer -P /tmp/ \
     && cd /tmp && php installer && mv composer.phar /usr/local/bin/composer \
     && sudo mkdir -p /var/www/site && sudo chown -R www-data:www-data /var/www/site \
+    && sudo chmod -R u=rwx,g=rwx,o=r /var/www/site \
     && sudo usermod -a -G www-data ubuntu \
     && sudo mkdir -p /home/ubuntu/./composer && sudo chown -R ubuntu /home/ubuntu/./composer 
     #&& echo 'export PATH="$HOME/.config/composer/vendor/bin:$PATH"' >> ~/.bashrc \
