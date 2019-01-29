@@ -1,7 +1,20 @@
 version: '3.6'
 
 services:
-  container_test:
+  mariadb_apache:
+    build: 
+      context: ./
+      dockerfile: Dockerfile_MariaDB
+    #image: mariadb
+    container_name: mariadb_project
+    environment: 
+      - MYSQL_ROOT_PASSWORD=password
+    ports:
+      - "33060:3306"
+    restart: on-failure  
+
+
+  apache_composer:
     build:
       context: ./
       dockerfile: Dockerfile
@@ -10,5 +23,21 @@ services:
       options:
         max-size: "1m"
         max-file: "2"
+    links:
+      - mariadb_apache
+    ports:
+        - "22:22"
+        - "80:80"
+        - "443:443"
+        - "3306:33060"
     restart: on-failure
+    stdin_open: true
     tty: true
+
+
+
+
+
+
+
+
